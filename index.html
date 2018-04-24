@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<title> demo </title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+</head>
+<body>
+	Hello world
+</body>
+<script>
+$.ajax({
+          type: "POST",
+          url: 'http://ec2-35-167-101-67.us-west-2.compute.amazonaws.com:3000/api/1/location',
+          data: {
+              'lat': 123.25,
+							'long': 123.25
+          },
+          dataType:'json',
+          success: function(data){
+							console.log(data);
+          },
+			    error: function(jq,status,message) {
+			       console.log('A jQuery error has occurred. Status: ' + status + ' - Message: ' + message);
+			    }
+			});
+</script>
+</html>
