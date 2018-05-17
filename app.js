@@ -33,7 +33,7 @@ app.use('/api', router);
 app.listen(3000, () => console.log('Server running on port 3000'))
 
 firebase.initializeApp({
-  databaseURL: "https://hacktj2018.firebaseio.com",
+  databaseURL: "https://senior-research-9bc05.firebaseio.com",
   service_account: "service.json"
 })
 
