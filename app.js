@@ -208,8 +208,8 @@ function toTitleCase(str)
   router.route('/:device_id/map')
     .get(function(req,res){
       ref.once("value", function(snapshot) {
-        let locations = snapshot.val();
-        let center = snapshot.val()[req.params.device_id];
+        var locations = snapshot.val();
+        var center = snapshot.val()[req.params.device_id];
         console.log(center);
 
         const options = {
