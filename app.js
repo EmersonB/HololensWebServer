@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var firebase = require("firebase");
 var request = require("request");
 
+const StaticMaps = require('staticmaps');
+
 const https = require("https");
 
 var router = express.Router();
@@ -194,3 +196,57 @@ function toTitleCase(str)
 {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
+
+
+
+
+
+//maps
+
+
+
+  router.route('/:device_id/map')
+    .get(function(req,res){
+      ref.once("value", function(snapshot) {
+        let locations = snapshot.val();
+        let center = snapshot.val()[req.params.device_id];
+        console.log(center);
+
+        const options = {
+          width: 600,
+          height: 400
+        };
+        const map = new StaticMaps(options);
+
+        const marker = {
+          img: `https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png`, // can also be a URL
+          offsetX: 24,
+          offsetY: 48,
+          width: 48,
+          height: 48 ,
+        };
+
+        for (var location in locations) {
+          console.log(location);
+          marker.coord = [locations[location].location.long, locations[location].location.lat];
+          map.addMarker(marker);
+        }
+
+        map.render([center.location.long, center.location.lat])
+          .then(() => map.image.save('assets/multiple-marker.png'))
+          .then(() => { console.log('File saved!'); res.sendFile(__dirname + '/assets/multiple-marker.png');})
+          .catch(console.log);
+
+      }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      });
+    })
+    .post(function(req,res){
+
+    })
+    .put(function(req, res){
+
+    })
+    .delete(function(req,res){
+
+    });

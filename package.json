@@ -12,7 +12,8 @@
     "body-parser": "latest",
     "express": "4.13.3",
     "firebase": "latest",
-    "request": "latest"
+    "request": "latest",
+    "staticmaps": "latest"
   },
   "keywords": [
     "node",
