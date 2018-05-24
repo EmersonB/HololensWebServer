@@ -219,7 +219,7 @@ function toTitleCase(str)
         const map = new StaticMaps(options);
 
         const marker = {
-          img: `https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png`, // can also be a URL
+          img: `${__dirname}/assets/greendot.png`, // can also be a URL
           offsetX: 24,
           offsetY: 48,
           width: 48,
