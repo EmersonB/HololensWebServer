@@ -208,9 +208,10 @@ function toTitleCase(str)
   router.route('/:device_id/map')
     .get(function(req,res){
       ref.once("value", function(snapshot) {
+        console.log("User retrieved a map image")
         var locations = snapshot.val();
         var center = snapshot.val()[req.params.device_id];
-        console.log(center);
+        // console.log(center);
 
         const options = {
           width: 600,
